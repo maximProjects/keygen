@@ -1,6 +1,6 @@
 <?php
 
-class KeysModule extends CWebModule
+class GeneratorModule extends CWebModule
 {
 	public function init()
 	{
@@ -9,8 +9,8 @@ class KeysModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'keys.models.*',
-			'keys.components.*',
+			'generator.models.*',
+			'generator.components.*',
 		));
 	}
 

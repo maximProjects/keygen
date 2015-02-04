@@ -14,3 +14,124 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/index.php?r=keys/index
 ---
+2015/02/04 16:03:08 [error] [exception.CException] exception 'CException' with message 'Alias "application.modules.keys.models.KeyForm" is invalid. Make sure it points to an existing PHP file and the file is readable.' in C:\OpenServer\domains\keygen.local\framework\YiiBase.php:323
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\gii\generators\form\FormCode.php(58): YiiBase::import('application.mod...', true)
+#1 C:\OpenServer\domains\keygen.local\framework\validators\CInlineValidator.php(42): FormCode->validateModel('model', Array)
+#2 C:\OpenServer\domains\keygen.local\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(FormCode), 'model')
+#3 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(159): CValidator->validate(Object(FormCode), NULL)
+#4 C:\OpenServer\domains\keygen.local\framework\gii\CCodeGenerator.php(159): CModel->validate()
+#5 C:\OpenServer\domains\keygen.local\framework\gii\CCodeGenerator.php(63): CCodeGenerator->prepare()
+#6 C:\OpenServer\domains\keygen.local\framework\web\actions\CInlineAction.php(49): CCodeGenerator->actionIndex()
+#7 C:\OpenServer\domains\keygen.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 C:\OpenServer\domains\keygen.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#9 C:\OpenServer\domains\keygen.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(282): CController->run('index')
+#11 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('gii/form/index')
+#12 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#13 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/index.php?r=gii/form/index
+HTTP_REFERER=http://keygen.local/index.php?r=gii/form/index
+---
+2015/02/04 16:07:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "keys/form".' in C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('keys/form')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=keys/form
+---
+2015/02/04 16:07:41 [error] [exception.CException] exception 'CException' with message 'KeysController cannot find the requested view "form".' in C:\OpenServer\domains\keygen.local\framework\web\CController.php:878
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\web\CController.php(782): CController->renderPartial('form', Array, true)
+#1 C:\OpenServer\domains\keygen.local\protected\modules\keys\controllers\KeysController.php(33): CController->render('form', Array)
+#2 C:\OpenServer\domains\keygen.local\framework\web\actions\CInlineAction.php(49): KeysController->actionForm()
+#3 C:\OpenServer\domains\keygen.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\OpenServer\domains\keygen.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\OpenServer\domains\keygen.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(282): CController->run('form')
+#7 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('keys/keys/form')
+#8 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#9 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/index.php?r=keys/keys/form
+---
+2015/02/04 16:10:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "generator/dafault/index".' in C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('generator/dafau...')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=generator/dafault/index
+---
+2015/02/04 16:41:44 [error] [exception.CException] exception 'CException' with message 'Property "CStringValidator.0" is not defined.' in C:\OpenServer\domains\keygen.local\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\validators\CValidator.php(177): CComponent->__set('0', 'requred')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(287): CValidator::createValidator('length', Object(Keys), 'key, vendor', Array)
+#2 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(260): CModel->createValidators()
+#3 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(547): CModel->getValidators()
+#4 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(468): CModel->getSafeAttributeNames()
+#5 C:\OpenServer\domains\keygen.local\framework\base\CComponent.php(152): CModel->setAttributes(Array)
+#6 C:\OpenServer\domains\keygen.local\framework\db\ar\CActiveRecord.php(161): CComponent->__set('attributes', Array)
+#7 C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php(25): CActiveRecord->__set('attributes', Array)
+#8 C:\OpenServer\domains\keygen.local\framework\web\actions\CInlineAction.php(49): KeysController->actionForm()
+#9 C:\OpenServer\domains\keygen.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\OpenServer\domains\keygen.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\OpenServer\domains\keygen.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(282): CController->run('form')
+#13 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('generator/keys/...')
+#14 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=generator/keys/form
+HTTP_REFERER=http://keygen.local/index.php?r=generator/keys/form
+---
+2015/02/04 16:46:08 [error] [exception.CException] exception 'CException' with message 'Property "CStringValidator.0" is not defined.' in C:\OpenServer\domains\keygen.local\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\validators\CValidator.php(177): CComponent->__set('0', 'required')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(287): CValidator::createValidator('length', Object(Keys), 'key, vendor', Array)
+#2 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(260): CModel->createValidators()
+#3 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(547): CModel->getValidators()
+#4 C:\OpenServer\domains\keygen.local\framework\base\CModel.php(468): CModel->getSafeAttributeNames()
+#5 C:\OpenServer\domains\keygen.local\framework\base\CComponent.php(152): CModel->setAttributes(Array)
+#6 C:\OpenServer\domains\keygen.local\framework\db\ar\CActiveRecord.php(161): CComponent->__set('attributes', Array)
+#7 C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php(25): CActiveRecord->__set('attributes', Array)
+#8 C:\OpenServer\domains\keygen.local\framework\web\actions\CInlineAction.php(49): KeysController->actionForm()
+#9 C:\OpenServer\domains\keygen.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#10 C:\OpenServer\domains\keygen.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#11 C:\OpenServer\domains\keygen.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(282): CController->run('form')
+#13 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('generator/keys/...')
+#14 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#15 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/index.php?r=generator/keys/form
+HTTP_REFERER=http://keygen.local/index.php?r=generator/keys/form
+---
+2015/02/04 16:47:44 [warning] [application] Failed to set unsafe attribute "limit_user" of "Keys".
+in C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php (25)
+in C:\OpenServer\domains\keygen.local\index.php (13)
+2015/02/04 16:47:44 [warning] [application] Failed to set unsafe attribute "edition" of "Keys".
+in C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php (25)
+in C:\OpenServer\domains\keygen.local\index.php (13)
+2015/02/04 16:52:13 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 19 column key is not unique. The SQL statement executed was: INSERT INTO 'keys' ("limit_user", "key", "vendor", "edition") VALUES (:yp0, :yp1, :yp2, :yp3).
+in C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php (28)
+in C:\OpenServer\domains\keygen.local\index.php (13)
+2015/02/04 16:52:13 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 19 column key is not unique. The SQL statement executed was: INSERT INTO 'keys' ("limit_user", "key", "vendor", "edition") VALUES (:yp0, :yp1, :yp2, :yp3)' in C:\OpenServer\domains\keygen.local\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 C:\OpenServer\domains\keygen.local\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 C:\OpenServer\domains\keygen.local\protected\modules\generator\controllers\KeysController.php(28): CActiveRecord->save()
+#3 C:\OpenServer\domains\keygen.local\framework\web\actions\CInlineAction.php(49): KeysController->actionForm()
+#4 C:\OpenServer\domains\keygen.local\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\OpenServer\domains\keygen.local\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 C:\OpenServer\domains\keygen.local\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(282): CController->run('form')
+#8 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('generator/keys/...')
+#9 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#10 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php?r=generator/keys/form
+HTTP_REFERER=http://keygen.local/index.php?r=generator/keys/form
+---
