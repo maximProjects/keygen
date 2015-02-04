@@ -1,0 +1,16 @@
+2015/02/04 14:54:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gii".' in C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=gii
+---
+2015/02/04 15:35:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "keys/index".' in C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\OpenServer\domains\keygen.local\framework\web\CWebApplication.php(141): CWebApplication->runController('keys/index')
+#1 C:\OpenServer\domains\keygen.local\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\OpenServer\domains\keygen.local\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php?r=keys/index
+---
