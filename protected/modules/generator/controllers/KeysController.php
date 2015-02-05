@@ -46,7 +46,6 @@ class KeysController extends Controller
 
 	    if(isset($_POST['Keys']))
 	    {
-
 	    	$arrVendor = array
 	    				(
 	    					'10' => array
@@ -74,6 +73,8 @@ class KeysController extends Controller
 
 	    	$model -> vendor = $arrVendor[$model -> limit_user][$model -> edition]; // select vendor number from array by selected user_limit and edition	
 
+		    for ($x = $model -> limit_user; $x > 0; $x--) // loop to create 1/5/10 keys
+		    {
 
 	    		$model -> key = $this -> generateKey($model);    
 		        
@@ -81,15 +82,30 @@ class KeysController extends Controller
 		        if($model->validate())
 		        {
 
-		        	//$model -> id = null;
-		        	//$model-> isNewRecord = true;
+		        	$model -> id = null;
+		        	$model-> isNewRecord = true;
 			        $model -> save();
 	            
 		            //return;
 		        }
-		    
-		    
+		        else
+		        {
+		        	$error = true;
+		        }
+		    }
+			if($error)
+			{
+				$mess = "ERROR";
+			}
+			else
+			{
+				$mess = "Generated OK";
+			}
+			$this->render('form',array('model'=>$model, 'mess' => $mess));		    
 	    }
-	    $this->render('form',array('model'=>$model));
+	    else{
+	    	$this->render('form',array('model'=>$model,'mess'=>''));	
+	    }
+	    
 	}
 }

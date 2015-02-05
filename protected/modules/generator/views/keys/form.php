@@ -25,7 +25,7 @@
 		<?php echo $form->dropDownList($model,'naam',$array); ?>
 	*/
 	?>
-
+	<?= $mess ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'limit_user'); ?>
 		<?php echo $form->dropDownList($model,'limit_user', array(10 => '10 Users', 50 => '50 Users', 100 => '100 Users')); ?>
