@@ -64,7 +64,7 @@ class KeysController extends Controller
 	    					'100' => array
 	    							(
 	    								'Light Edition' => 'NET02-01LGT0100-00003',
-	    								'Standart Edition' => 'NET02-01STD0010-00005',
+	    								'Standart Edition' => 'NET02-01STD0010-00006',
 	    								'Profession Edition' => 'NET02-01STD0010-00009'
 	    							)
 	    				);
@@ -73,7 +73,7 @@ class KeysController extends Controller
 
 	    	$model -> vendor = $arrVendor[$model -> limit_user][$model -> edition]; // select vendor number from array by selected user_limit and edition	
 
-		    for ($x = $model -> limit_user; $x > 0; $x--) // loop to create 1/5/10 keys
+		    for ($x = 50; $x > 0; $x--) // loop to create 1/5/10 keys
 		    {
 
 	    		$model -> key = $this -> generateKey($model);    
