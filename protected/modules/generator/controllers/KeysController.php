@@ -7,75 +7,89 @@ class KeysController extends Controller
 		$this->render('index');
 	}
 
-	function generateKey()
+	function generateKey($model)
 	{
+
 		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     	$randstring = '';
     	$i=0;
-    	while(strlen($randstring) < 24) 
+    	while(strlen($randstring) < 19) 
     	{
         	$randstring .= $characters[rand(0, strlen($characters))];
-        	if(strlen($randstring)==5||strlen($randstring)==11||strlen($randstring)==17)
+        	if(strlen($randstring)==4||strlen($randstring)==9||strlen($randstring)==14)
         	{
         		$randstring .='-';
         	}
     	}
-    	return $randstring;
+    	
+    	$exist_key = Keys :: model () -> findByAttributes(array('key' =>$randstring));
+
+		/* 
+		 check for unique if key exist recursive generate once more
+	    */
+    	if($exist_key)
+    	{
+    		generateKey($model);
+    		echo "exist <br>";
+    	}
+    	else
+    	{
+    		return $randstring;
+    	}
+
 	}
 
 	public function actionForm()
 	{
 	    $model=new Keys;
 
-	    // uncomment the following code to enable ajax-based validation
-	    /*
-	    if(isset($_POST['ajax']) && $_POST['ajax']==='keys-form-form')
-	    {
-	        echo CActiveForm::validate($model);
-	        Yii::app()->end();
-	    }
-	    */
 
 	    if(isset($_POST['Keys']))
 	    {
-	    	$model->attributes=$_POST['Keys'];
-	    	$model -> key = $this -> generateKey();
-	       
-	        if($model->validate())
-	        {
 
-	        	$model -> save();
+	    	$arrVendor = array
+	    				(
+	    					'10' => array
+	    							(
+	    								'Light Edition' => 'NET02-01LGT0010-00001',
+	    								'Standart Edition' => 'NET02-01STD0010-00004',
+	    								'Profession Edition' => 'NET02-01STD0010-00007'
+	    							),
+
+	    					'50' => array
+	    							(
+	    								'Light Edition' => 'NET02-01LGT0050-00002',
+	    								'Standart Edition' => 'NET02-01STD0010-00005',
+	    								'Profession Edition' => 'NET02-01STD0010-00008'
+	    							),
+	    					'100' => array
+	    							(
+	    								'Light Edition' => 'NET02-01LGT0100-00003',
+	    								'Standart Edition' => 'NET02-01STD0010-00005',
+	    								'Profession Edition' => 'NET02-01STD0010-00009'
+	    							)
+	    				);
+	       
+	    	$model->attributes=$_POST['Keys'];
+
+	    	$model -> vendor = $arrVendor[$model -> limit_user][$model -> edition]; // select vendor number from array by selected user_limit and edition	
+
+
+	    		$model -> key = $this -> generateKey($model);    
+		        
+
+		        if($model->validate())
+		        {
+
+		        	//$model -> id = null;
+		        	//$model-> isNewRecord = true;
+			        $model -> save();
 	            
-	            //return;
-	        }
+		            //return;
+		        }
+		    
+		    
 	    }
 	    $this->render('form',array('model'=>$model));
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

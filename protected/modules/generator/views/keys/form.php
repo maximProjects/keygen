@@ -34,19 +34,9 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'edition'); ?>
-		<?php echo $form->dropDownList($model,'edition', array('Light' => 'Light', 'Standart' => 'Standart', 'Profession' => 'Profession')); ?>
+		<?php echo $form->dropDownList($model,'edition', array('Light Edition' => 'Light Edition', 'Standart Edition' => 'Standart Edition', 'Profession Edition' => 'Profession Edition')); ?>
 		<?php echo $form->error($model,'edition'); ?>
 	</div>
-
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'vendor'); ?>
-		<?php echo $form->textField($model,'vendor'); ?>
-		<?php echo $form->error($model,'vendor'); ?>
-	</div>
-
-
-
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
