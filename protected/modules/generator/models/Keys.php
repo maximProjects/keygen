@@ -28,7 +28,7 @@ class Keys extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('key, vendor, edition, limit_user',  'required')
+			array('vendor, edition, limit_user',  'required')
 		);
 	}
 

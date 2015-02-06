@@ -52,20 +52,20 @@ class KeysController extends Controller
 	    							(
 	    								'Light Edition' => array('code' => 'NET02-01LGT0010-00001', 'name' => 'Light Edition limited to 10 Users'),
 	    								'Standart Edition' => array('code' => 'NET02-01STD0010-00004', 'name' => 'Standard Edition limited to 10 Users'),
-	    								'Profession Edition' => array('code' => 'NET02-01STD0010-00007', 'name' => 'Professional Edition limited to 10 Users')
+	    								'Profession Edition' => array('code' => 'NET02-01PRF0010-00007', 'name' => 'Professional Edition limited to 10 Users')
 	    							),
 
 	    					'50' => array
 	    							(
 	    								'Light Edition' => array('code' => 'NET02-01LGT0050-00002', 'name' => 'Light Edition limited to 50 Users'),
-	    								'Standart Edition' => array('code' => 'NET02-01STD0010-00005', 'name' => 'Standard Edition limited to 50 Users'),
-	    								'Profession Edition' => array('code' => 'NET02-01STD0010-00008', 'name' => 'Professional Edition limited to 50 Users')
+	    								'Standart Edition' => array('code' => 'NET02-01STD0050-00005', 'name' => 'Standard Edition limited to 50 Users'),
+	    								'Profession Edition' => array('code' => 'NET02-01PRF0050-00008', 'name' => 'Professional Edition limited to 50 Users')
 	    							),
 	    					'100' => array
 	    							(
 	    								'Light Edition' => array('code' => 'NET02-01LGT0100-00003', 'name' => 'Light Edition limited to 100 Users'),
-	    								'Standart Edition' => array('code' => 'NET02-01STD0010-00006', 'name' => 'Standard Edition limited to 100 Users'),
-	    								'Profession Edition' => array('code' => 'NET02-01STD0010-00009', 'name' => 'Professional Edition limited to 100 Users')
+	    								'Standart Edition' => array('code' => 'NET02-01STD0100-00006', 'name' => 'Standard Edition limited to 100 Users'),
+	    								'Profession Edition' => array('code' => 'NET02-01PRF0100-00009', 'name' => 'Professional Edition limited to 100 Users')
 	    							)
 	    				);
 
@@ -75,12 +75,15 @@ class KeysController extends Controller
 	    	$model -> vendor = $arrVendor[$model -> limit_user][$model -> edition]['code']; // select vendor number from array by selected user_limit and edition	
 
 	    	$model -> edition = $arrVendor[$model -> limit_user][$model -> edition]['name'];
-		    for ($x = 50; $x > 0; $x--) // loop to create 1/5/10 keys
+
+	        /*
+				SINGLE insert 
+	        */    
+			/*
+		    for ($x = 50; $x > 0; $x--) // generates keys array
 		    {
 
-	    		$model -> key = $this -> generateKey($model);    
-		        
-
+				$model -> key = $this -> generateKey($model);
 		        if($model->validate())
 		        {
 
@@ -88,13 +91,56 @@ class KeysController extends Controller
 		        	$model-> isNewRecord = true;
 			        $model -> save();
 	            
-		            //return;
 		        }
 		        else
 		        {
 		        	$error = true;
 		        }
+
 		    }
+			*/		        
+	        /*
+				SINGLE insert End
+	        */
+
+
+	        /*
+				MULTIPLE insert 
+	        */
+			
+	        if($model->validate())
+	        {
+	    		$arrKeys = array();
+			    for ($x = 50; $x > 0; $x--) // generates keys array
+			    {
+			    	$arrKeys[] = $this -> generateKey($model); 
+			    }
+
+	        	$i=1;
+	        	$values='';
+	        	foreach($arrKeys as $item)
+	        	{
+	        		$values .= "('".$item."','".$model -> vendor."',".$model -> limit_user.",'".$model -> edition."')";
+	        		if($i != count($arrKeys)){
+	        			$values .= ",";
+	        		}
+	        		$i++;	
+	        	}
+
+		    	$sql = "INSERT INTO keys (key, vendor, limit_user, edition) VALUES ".$values;
+				$connection = Yii::app()->db;
+				$command=$connection->createCommand($sql);
+				$command->execute();
+	        }
+	        else
+	        {
+	        	$error = true;
+	        }
+			
+	        /*
+				MULTIPLE insert End
+	        */
+
 			if($error)
 			{
 				$mess = "ERROR";
